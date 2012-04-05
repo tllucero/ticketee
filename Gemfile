@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -15,7 +15,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -43,7 +43,8 @@ end
 
 group :test do
 #	gem 'cucumber-rails' # does not make web-steps file
-	gem 'cucumber-rails', '1.0.6'
+# Aslak Hellesoy wrote this under duress - lets Rails 3 in Action work
+	gem 'cucumber-rails-training-wheels'
 	gem 'capybara'
 	gem 'database_cleaner'
 end
