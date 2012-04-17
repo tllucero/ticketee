@@ -1,0 +1,15 @@
+<%= form_for [@project, @ticket] do |f| %>
+  <% @project.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description %>
+	</p>
+	<%= f.submit %>
+<% end %>
+
