@@ -1,5 +1,5 @@
 <%= form_for [@project, @ticket] do |f| %>
-  <% @project.errors.full_messages.each do |msg| %>
+  <% @ticket.errors.full_messages.each do |msg| %>
     <p><%= msg %></p>
   <% end %>
 	<p>
