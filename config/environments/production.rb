@@ -48,6 +48,9 @@ Ticketee::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
+	# TLL 04/19/2012 - this is only for "production" on local machine
+	# TLL 04/19/2012 - for actual production, specify actual url
+	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
