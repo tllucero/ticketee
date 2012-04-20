@@ -50,3 +50,6 @@ group :test do
 	gem 'database_cleaner'
 	gem 'factory_girl_rails'
 end
+
+gem 'devise'
+
