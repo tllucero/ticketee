@@ -50,7 +50,8 @@ Ticketee::Application.configure do
 
 	# TLL 04/19/2012 - this is only for "production" on local machine
 	# TLL 04/19/2012 - for actual production, specify actual url
-	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+#	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+	config.action_mailer.default_url_options = { :host => 'stardevsoft.com' }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
