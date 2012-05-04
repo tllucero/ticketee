@@ -8,7 +8,11 @@ class Admin::UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params[:user])
+# adding
+		@user = User.new
+		@user.assign_attributes({"email" => params[:user][:email], "password" => params[:user][:password],
+														 "admin" => params[:user][:admin] == "1" }, :as => :admin)
+# end adding?
 		if @user.save
 		  flash[:notice] = "User has been created."
 		  redirect_to admin_users_path
@@ -17,4 +21,14 @@ class Admin::UsersController < ApplicationController
 		  render :action => "new"
 		end
 	end
+
+# adding ??
+protected
+
+	def user_params
+		role = admin ? :admin : :default
+		sanitize_for_mass_assignment(params[:user], role)
+	end
+#end adding ??
+
 end
