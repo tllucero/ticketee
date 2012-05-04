@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+	before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+
   def index
 		@users = User.all(:order => "email")
   end
@@ -8,11 +10,9 @@ class Admin::UsersController < ApplicationController
 	end
 
 	def create
-# adding
 		@user = User.new
 		@user.assign_attributes({"email" => params[:user][:email], "password" => params[:user][:password],
 														 "admin" => params[:user][:admin] == "1" }, :as => :admin)
-# end adding?
 		if @user.save
 		  flash[:notice] = "User has been created."
 		  redirect_to admin_users_path
@@ -22,13 +22,40 @@ class Admin::UsersController < ApplicationController
 		end
 	end
 
-# adding ??
+	def show
+	end
+
+	def edit
+	end
+
+	def update
+		if params[:user][:password].blank?
+			params[:user].delete(:password)
+			params[:user].delete(:password_confirmation)
+		end
+
+		@user.assign_attributes({"email" => params[:user][:email], "password" => params[:user][:password],
+										    				"admin" => params[:user][:admin] == "1" }, :as => :admin)
+		if @user.update_attributes({}, :as => :admin)
+		  flash[:notice] = "User has been updated."
+		  redirect_to admin_users_path
+		else
+		  flash[:alert] = "User has not been updated."
+		  render :action => "edit"
+		end
+	end
+
 protected
 
 	def user_params
 		role = admin ? :admin : :default
 		sanitize_for_mass_assignment(params[:user], role)
 	end
-#end adding ??
+
+private
+
+	def find_user
+	  @user = User.find(params[:id])
+	end
 
 end
